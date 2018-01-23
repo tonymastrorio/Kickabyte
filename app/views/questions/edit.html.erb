@@ -1,0 +1,12 @@
+<%= form_for @question, url: question_path(@question), html: { method: :put } do |f| %>
+
+    <%= f.label :title %>
+    <%= f.text_field :title %><br><br>
+    <%= f.label :body %>
+    <%= f.text_area :body, :class => "tinymce", :rows => 10, :cols => 120 %>
+
+<%= tinymce %>
+
+<%= f.submit %>
+    
+<% end %>

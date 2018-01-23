@@ -1,4 +1,6 @@
 <%= @question.title %><br>
+<blockquote class="embedly-card"><h4><a href="<%= @question.url %>">Loom Videos Embed.ly Announcement</a></h4></blockquote>
+<script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
 <%= simple_format(@question.body) %>
 
 <br><br>
@@ -33,7 +35,11 @@
     <% else %>
         <%= link_to "downvote", answer_user_dislike_path(answer, current_user), method: :put %>
     <% end %>
-
-    <%= simple_format(answer.body) %><br><br>
+    
+    <%= simple_format(answer.body) %>
+    <% if current_user == answer.user %>
+        <%= link_to "Edit Answer", edit_answer_path(answer), method: :get %>
+    <% end %>
+    <br><br>
 
 <% end %>

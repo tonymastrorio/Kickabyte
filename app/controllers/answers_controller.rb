@@ -15,6 +15,21 @@ class AnswersController < ApplicationController
         end
     end
 
+    def edit
+        require_permission_answers_controller
+        @answer = Answer.find_by(id: params[:id])
+        @question = @answer.question
+    end
+
+    def update
+        require_permission_answers_controller
+        @answer = Answer.find_by(id: params[:id])
+        @question = @answer.question
+        @answer.update(answer_params)
+
+        redirect_to question_path(@question)
+    end
+
     def downvote
         @answer = Answer.find(params[:answer_id])
         @answer.downvote_by current_user
@@ -31,6 +46,12 @@ class AnswersController < ApplicationController
 
     def answer_params
         params.require(:answer).permit(:body, :user_id, :question_id)
+    end
+
+    def require_permission_answers_controller
+        if current_user != Answer.find(params[:id]).user
+            redirect_to root_path
+        end
     end
 
 end

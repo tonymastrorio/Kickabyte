@@ -23,7 +23,16 @@ class QuestionsController < ApplicationController
     end
 
     def edit
+        require_permission_questions_controller
         @question = Question.find_by(id: params[:id])
+    end
+
+    def update
+        require_permission_questions_controller
+        @question = Question.find_by(id: params[:id])
+        @question.update(question_params)
+
+        redirect_to question_path(@question)
     end
 
     def upvote
@@ -47,6 +56,12 @@ class QuestionsController < ApplicationController
     private
 
     def question_params
-        params.require(:question).permit(:title, :body)
+        params.require(:question).permit(:title, :body, :url)
+    end
+
+    def require_permission_questions_controller
+        if current_user != Question.find(params[:id]).user
+            redirect_to root_path
+        end
     end
 end
