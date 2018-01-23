@@ -1,0 +1,42 @@
+<main>
+    <% @questions.each do |question| %>
+        <div class="whole-question">
+            <div class="vote-container">
+                <% if current_user.liked? question %>
+                    <%= link_to question_user_unvote_path(question, current_user), :class => "vote", method: :put do %>
+                        <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                        <% end %>
+                <% else %>
+                    <%= link_to question_user_like_path(question, current_user), :class => "vote", method: :put do %>
+                        <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                        <% end %>
+                <% end %>
+                <div class="num-upvotes">
+                    <%= question.get_upvotes.size %>
+                </div>
+            </div>
+
+            <div class="question-details">
+                <div class="question-title">
+                    <%= link_to question.title, question_path(question), :class => "question-title" %>
+                </div>
+                <span>
+                    <% if current_user == question.user %>
+                        <%= link_to "Edit Question",
+                            edit_question_path(question), method: :get %>
+                    <% end %>
+                </span>
+                <div class="question-user">
+                    by <span class="question-email"><%= question.user.email %></span>
+                    <%= time_ago_in_words(question.created_at) %> ago
+                    <%= link_to question.answers.count.to_s + " answers", question_path(question) %>
+                </div>
+            </div>
+        </div>
+    <% end %>
+
+    <hr />
+    <%= paginate @questions %>
+    <%= page_entries_info @questions %>
+
+</main>

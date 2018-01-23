@@ -1,0 +1,49 @@
+// Place all the styles related to the Questions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+main {
+  padding: 25px;
+}
+
+.whole-question {
+  display: flex;
+  width: 100%;
+  margin: 0 auto 25px auto;
+}
+
+.vote-container {
+  width: 100px;
+  font-size: 18px;
+  text-align: center;
+  line-height: .85;
+}
+
+.question-details {
+  flex: 1;
+}
+
+.question-title {
+  font-size: 16px;
+}
+
+.question-user {
+  font-size: 13px;
+}
+
+.answer-text {
+  margin-left: 20px;
+}
+
+.question-email {
+  font-style: italic;
+}
+
+/*Media Queries*/
+
+@media only screen and (max-width: 500px) {
+  .vote-container {
+    width: 50px;
+    margin: auto;
+  }
+}

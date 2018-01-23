@@ -1,0 +1,11 @@
+width: 600
+height: 200
+
+toolbar:
+  - styleselect | bold italic | undo redo | image | link | codesample | preview
+plugins:
+  - image
+  - link
+  - codesample
+  - preview
+
