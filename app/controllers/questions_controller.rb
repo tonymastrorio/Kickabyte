@@ -1,6 +1,13 @@
 class QuestionsController < ApplicationController
     def index
-        @questions = Question.order('created_at DESC').page(params[:page]).per(10)
+        if params[:search]
+            @questions = Question.search do
+                fulltext params[:search]
+                paginate page: params[:page], per_page: 20
+            end.results
+        else
+            @questions = Question.order('created_at DESC').page(params[:page]).per(10)
+        end
     end
 
     def show
