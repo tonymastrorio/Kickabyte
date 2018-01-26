@@ -6,7 +6,14 @@ class Question < ApplicationRecord
     acts_as_votable
 
     searchable do
-        text :title, :body
+        text :title, :body, :question_user
+        text :answers do
+            answers.map(&:body)
+        end
     end
-    
+
+    def question_user
+        user.email
+    end
+
 end

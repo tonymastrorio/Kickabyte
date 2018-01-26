@@ -36,8 +36,7 @@
 
     <hr />
     <%= paginate @questions %>
-    <% if !params[:search] %>
-        <%= page_entries_info @questions %>
-    <% end %>
-
+    
+        <%= page_entries_info @questions, entry_name: "question" %>
+    
 </main>

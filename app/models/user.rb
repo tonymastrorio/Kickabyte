@@ -6,6 +6,7 @@ class User < ApplicationRecord
     has_many :user_skills
     has_many :skills, through: :user_skills
     acts_as_voter
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
