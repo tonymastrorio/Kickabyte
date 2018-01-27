@@ -23,23 +23,17 @@
 <br><br>
 
 <% @question.answers.each do |answer| %>
-    <% if current_user.liked? answer %>
-        <%= link_to "upvote", answer_user_unvote_path(answer, current_user), method: :put %>
-    <% else %>
-        <%= link_to "upvote", answer_user_like_path(answer, current_user), method: :put %>
-    <% end %>
-    <strong>Votes: </strong><%= answer.get_upvotes.size - answer.get_downvotes.size %>
+    <div class="answer" data-id="<%= answer.id %>">
+        <%= link_to "upvote", answer_user_like_path(answer, current_user), method: :put, class: "like-btn", remote: true %>
+        <strong>Votes: </strong><span class="likes-count"><%= answer.get_upvotes.size - answer.get_downvotes.size %></span>
 
-    <% if current_user.disliked? answer %>
-        <%= link_to "downvote", answer_user_unvote_path(answer, current_user), method: :put %>
-    <% else %>
-        <%= link_to "downvote", answer_user_dislike_path(answer, current_user), method: :put %>
-    <% end %>
-    
-    <%= simple_format(answer.body) %>
-    <% if current_user == answer.user %>
-        <%= link_to "Edit Answer", edit_answer_path(answer), method: :get %>
-    <% end %>
-    <br><br>
+        <%= link_to "downvote", answer_user_dislike_path(answer, current_user), method: :put, class: "dislike-btn", remote: true %>
+        
+        <%= simple_format(answer.body) %>
+        <% if current_user == answer.user %>
+            <%= link_to "Edit Answer", edit_answer_path(answer), method: :get %>
+        <% end %>
+        <br><br>
+    </div>
 
 <% end %>

@@ -1,8 +1,14 @@
 class AnswersController < ApplicationController
+    respond_to :js, :json, :html
+
     def upvote
         @answer = Answer.find(params[:answer_id])
-        @answer.upvote_by current_user
-        redirect_back(fallback_location: root_path)
+        if !current_user.liked? @answer
+            @answer.upvote_by current_user
+        elsif current_user.liked? @answer
+            @answer.unvote_by current_user
+        end
+        # redirect_back(fallback_location: root_path)
     end
 
     def create
@@ -32,14 +38,18 @@ class AnswersController < ApplicationController
 
     def downvote
         @answer = Answer.find(params[:answer_id])
-        @answer.downvote_by current_user
-        redirect_back(fallback_location: root_path)
+        if !current_user.disliked? @answer
+            @answer.downvote_by current_user
+        elsif current_user.disliked? @answer
+            @answer.unvote_by current_user
+        end
+        # redirect_back(fallback_location: root_path)
     end
 
     def unvote
         @answer = Answer.find(params[:answer_id])
         @answer.unvote_by current_user
-        redirect_back(fallback_location: root_path)
+        # redirect_back(fallback_location: root_path)
     end
 
     private

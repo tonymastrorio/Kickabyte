@@ -1,0 +1,9 @@
+<% if current_user.disliked? @answer %>
+    $('.dislike-btn').addClass('disliked');    
+<% else %>
+    $('.dislike-btn').removeClass('disliked')
+<% end %>
+// $('.likes-count').html("<%= @answer.get_upvotes.size - @answer.get_downvotes.size %>")
+
+var $answerdiv = $('div.answer[data-id="<%= @answer.id %>"]');
+$answerdiv.find('.likes-count').html("<%= @answer.get_upvotes.size - @answer.get_downvotes.size %>");
