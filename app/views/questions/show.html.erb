@@ -34,6 +34,7 @@
         <% end %>
         
         <%= simple_format(answer.body) %>
+        <div>by: <%= answer.user.displayName %></div>
         <% if current_user == answer.user %>
             <%= link_to "Edit Answer", edit_answer_path(answer), method: :get %>
         <% end %>
