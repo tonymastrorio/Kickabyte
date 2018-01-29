@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+    respond_to :js, :json, :html
+    
     def index
         if params[:search]
             @questions = Question.search do
@@ -44,8 +46,12 @@ class QuestionsController < ApplicationController
 
     def upvote
         @question = Question.find(params[:question_id])
-        @question.upvote_by current_user
-        redirect_back(fallback_location: root_path)
+        if !current_user.liked? @question
+            @question.upvote_by current_user
+        elsif current_user.liked? @question
+            @question.unvote_by current_user
+        end
+        # redirect_back(fallback_location: root_path)
     end
 
     def downvote

@@ -1,0 +1,8 @@
+<% if current_user.liked? @question %>
+    $('.vote').addClass('liked');    
+<% else %>
+    $('.vote').removeClass('liked')
+<% end %>
+
+var $questiondiv = $('div.vote-container[data-id="<%= @question.id %>"]');
+$questiondiv.find('.num-upvotes').html("<%= @question.get_upvotes.size %>");

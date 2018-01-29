@@ -1,15 +1,9 @@
 <main>
     <% @questions.each do |question| %>
         <div class="whole-question">
-            <div class="vote-container">
-                <% if current_user.liked? question %>
-                    <%= link_to question_user_unvote_path(question, current_user), :class => "vote", method: :put do %>
-                        <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                        <% end %>
-                <% else %>
-                    <%= link_to question_user_like_path(question, current_user), :class => "vote", method: :put do %>
-                        <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                        <% end %>
+            <div class="vote-container" data-id="<%= question.id %>">
+                <%= link_to question_user_like_path(question, current_user), :class => "vote", method: :put, remote: true do %>
+                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
                 <% end %>
                 <div class="num-upvotes">
                     <%= question.get_upvotes.size %>
