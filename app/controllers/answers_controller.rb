@@ -5,10 +5,11 @@ class AnswersController < ApplicationController
         @answer = Answer.find(params[:answer_id])
         if !current_user.liked? @answer
             @answer.upvote_by current_user
+            @answer.addPoints
         elsif current_user.liked? @answer
             @answer.unvote_by current_user
+            @answer.subtractPoints
         end
-        # redirect_back(fallback_location: root_path)
     end
 
     def create
@@ -40,10 +41,11 @@ class AnswersController < ApplicationController
         @answer = Answer.find(params[:answer_id])
         if !current_user.disliked? @answer
             @answer.downvote_by current_user
+            @answer.subtractPoints
         elsif current_user.disliked? @answer
             @answer.unvote_by current_user
+            @answer.addPoints
         end
-        # redirect_back(fallback_location: root_path)
     end
 
     def unvote

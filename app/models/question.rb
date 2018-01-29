@@ -16,4 +16,14 @@ class Question < ApplicationRecord
         user.email
     end
 
+    def addPoints
+      user.points += 5
+      user.save
+    end
+
+    def subtractPoints
+      user.points -= 5
+      user.save
+    end
+
 end

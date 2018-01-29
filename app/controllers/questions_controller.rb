@@ -48,10 +48,11 @@ class QuestionsController < ApplicationController
         @question = Question.find(params[:question_id])
         if !current_user.liked? @question
             @question.upvote_by current_user
+            @question.addPoints
         elsif current_user.liked? @question
             @question.unvote_by current_user
+            @question.subtractPoints
         end
-        # redirect_back(fallback_location: root_path)
     end
 
     def downvote
