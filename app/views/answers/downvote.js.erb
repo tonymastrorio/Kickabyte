@@ -1,9 +1,17 @@
+var $downvotediv = $('div.answer[data-id="<%= @answer.id %>"]');
+
 <% if current_user.disliked? @answer %>
-    $('.dislike-btn').addClass('disliked');    
+    $downvotediv.find('.dislike-btn').addClass('liked');   
 <% else %>
-    $('.dislike-btn').removeClass('disliked')
+    $downvotediv.find('.dislike-btn').removeClass('liked');
 <% end %>
-// $('.likes-count').html("<%= @answer.get_upvotes.size - @answer.get_downvotes.size %>")
+
+<% if current_user.liked? @answer %>
+    $downvotediv.find('.like-btn').addClass('liked');   
+<% else %>
+    $downvotediv.find('.like-btn').removeClass('liked');
+<% end %>
+
 
 var $answerdiv = $('div.answer[data-id="<%= @answer.id %>"]');
 $answerdiv.find('.likes-count').html("<%= @answer.get_upvotes.size - @answer.get_downvotes.size %>");
