@@ -1,7 +1,9 @@
+var $upvotediv = $('div.vote-container[data-id="<%= @question.id %>"]');
+
 <% if current_user.liked? @question %>
-    $('.vote').addClass('liked');    
+    $upvotediv.find('.vote').addClass('liked');   
 <% else %>
-    $('.vote').removeClass('liked')
+    $upvotediv.find('.vote').removeClass('liked');
 <% end %>
 
 var $questiondiv = $('div.vote-container[data-id="<%= @question.id %>"]');

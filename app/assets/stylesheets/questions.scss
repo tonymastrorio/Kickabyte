@@ -19,6 +19,16 @@ main {
   line-height: .85;
 }
 
+.vote, .vote:focus, .vote:hover, .vote:active {
+  color: blue;
+  text-decoration:none;
+}
+
+.liked, .liked:focus, .liked:hover, .liked:active {
+  color: orange;
+  text-decoration: none;
+}
+
 .question-details {
   flex: 1;
 }
