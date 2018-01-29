@@ -20,4 +20,11 @@ class User < ApplicationRecord
       end
     end
 
+    def displayName
+      names = name.split
+      firstname = names.first
+      lastname = names.last[0,1]
+      firstname + " " + lastname
+    end
+
 end
