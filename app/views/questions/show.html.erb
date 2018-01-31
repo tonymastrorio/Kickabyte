@@ -1,16 +1,10 @@
 <%= @question.title %><br>
 
 <% if @question.url && !@question.url.empty? %>
-
-<!-- <blockquote class="embedly-card"><h4><a href="<%= @question.url %>"></a></h4></blockquote>
-<script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script> -->
-
-<%= get_video_iframe(@question.url) %>
-
+    <%= get_video_iframe(@question.url) %>
+<% end %>
 
 <%= simple_format(@question.body) %>
-
-<% end %>
 
 <br><br>
 
@@ -23,10 +17,12 @@
 <%= form_for(@answer) do |f| %>
     <%= f.hidden_field :question_id, :value => @question.id %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.label :url, "Screencast URL" %>
+    <%= f.text_field :url %><br><br>
     <%= f.text_area :body, :class => "tinymce", :rows => 10, :cols => 120 %>
 
 <%= tinymce %>
-
+<br>
 <%= f.submit %>
 <% end %>
 <br><br>
@@ -41,6 +37,13 @@
         <%= link_to answer_user_dislike_path(answer, current_user), method: :put, class: "dislike-btn #{'liked' if current_user.disliked? answer}", remote: true do %>
             <i class="fa fa-chevron-down" aria-hidden="true"></i>
         <% end %>
+
+        <div>
+            <% if answer.url && !answer.url.empty? %>
+                <%= get_video_iframe(answer.url) %>
+            <% end %>
+        </div>
+        
         
         <%= simple_format(answer.body) %>
         <div>by: <%= answer.user.displayName %></div>
