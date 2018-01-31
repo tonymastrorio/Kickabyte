@@ -3,7 +3,11 @@ class AnswersController < ApplicationController
 
     def upvote
         @answer = Answer.find(params[:answer_id])
-        if !current_user.liked? @answer
+        if current_user.disliked? @answer
+            @answer.upvote_by current_user
+            @answer.addPoints
+            @answer.addPoints
+        elsif !current_user.liked? @answer
             @answer.upvote_by current_user
             @answer.addPoints
         elsif current_user.liked? @answer
@@ -39,7 +43,11 @@ class AnswersController < ApplicationController
 
     def downvote
         @answer = Answer.find(params[:answer_id])
-        if !current_user.disliked? @answer
+        if current_user.liked? @answer
+            @answer.downvote_by current_user
+            @answer.subtractPoints
+            @answer.subtractPoints
+        elsif !current_user.disliked? @answer
             @answer.downvote_by current_user
             @answer.subtractPoints
         elsif current_user.disliked? @answer

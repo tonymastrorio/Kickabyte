@@ -1,7 +1,16 @@
 <%= @question.title %><br>
-<blockquote class="embedly-card"><h4><a href="<%= @question.url %>">Loom Videos Embed.ly Announcement</a></h4></blockquote>
-<script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
+
+<% if @question.url && !@question.url.empty? %>
+
+<!-- <blockquote class="embedly-card"><h4><a href="<%= @question.url %>"></a></h4></blockquote>
+<script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script> -->
+
+<%= get_video_iframe(@question.url) %>
+
+
 <%= simple_format(@question.body) %>
+
+<% end %>
 
 <br><br>
 
