@@ -19,6 +19,7 @@ class AnswersController < ApplicationController
     def create
         @answer = Answer.new(answer_params)
         if @answer.save
+            UserMailer.welcome_email(@answer.question.user).deliver_now
             redirect_to root_path
         else
             flash[:notice] = @answer.errors.full_messages

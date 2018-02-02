@@ -22,10 +22,14 @@ class User < ApplicationRecord
     end
 
     def displayName
-      names = name.split
-      firstname = names.first
-      lastname = names.last[0,1]
-      firstname + " " + lastname
+      if display_name
+        display_name
+      else
+        names = name.split
+        firstname = names.first
+        lastname = names.last[0,1]
+        firstname + " " + lastname
+      end
     end
 
 end
