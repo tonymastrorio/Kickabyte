@@ -57,12 +57,13 @@ module VideosHelper
 
   def find_loom_id url
     url = sanitize url
+    url = url.sub('share', 'embed')
   end
 
   def get_loom_iframe url, width, height
     loom_url = find_loom_id url
     result = %(<iframe width="#{width}" height="#{height}" 
-              src="https://www.useloom.com/embed/9d914b09eacc494f930be197ca52013c"
+              src="#{ loom_url }"
                 frameborder="0" webkitallowfullscreen 
                 # mozallowfullscreen allowfullscreen></iframe>)
     result.html_safe
