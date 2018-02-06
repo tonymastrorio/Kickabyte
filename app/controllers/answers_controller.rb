@@ -18,11 +18,14 @@ class AnswersController < ApplicationController
 
     def create
         @answer = Answer.new(answer_params)
-        if @answer.save
+        if !@answer.url.include? "www.useloom.com" || "www.vimeo.com" || "www.youtube.com"
+                flash[:notice] = "The format of your URL is incorrect. Try again"
+                redirect_to question_path(@answer.question)
+        elsif @answer.save
             UserMailer.welcome_email(@answer.question.user).deliver_now
-            redirect_to root_path
+            redirect_to question_path(@answer.question)
         else
-            flash[:notice] = @answer.errors.full_messages
+            flash[:notice] = @answer.errors.full_messages.to_sentence
             redirect_back(fallback_location: root_path)
         end
     end

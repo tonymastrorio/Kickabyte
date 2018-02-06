@@ -2,7 +2,7 @@ class Answer < ApplicationRecord
     belongs_to :user
     belongs_to :question
     has_many :acomments
-    validates_presence_of :body
+    validates_presence_of :body, :url
     acts_as_votable
 
     def addPoints
