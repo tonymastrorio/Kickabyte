@@ -1,3 +1,9 @@
+<% if @anchor %>
+  <script type="text/javascript">
+    window.location.hash = "<%= @anchor %>";
+  </script>
+<% end %>
+
 <%= @question.title %><br>
 
 <% if @question.url && !@question.url.empty? %>
@@ -8,7 +14,7 @@
 
 <br><br>
 
-<h3>Your Answer</h3><br>
+<h3 id="anchor_point">Your Answer</h3><br>
 
 <% if flash[:notice] %>
     <div class="notice"><%= flash[:notice] %></div>
@@ -52,5 +58,7 @@
         <% end %>
         <br><br>
     </div>
+
+
 
 <% end %>
