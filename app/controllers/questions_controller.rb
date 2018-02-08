@@ -24,11 +24,9 @@ class QuestionsController < ApplicationController
     def create
         @question = Question.new(question_params)
         @question.user = current_user
-        if !@question.url.empty?
-            if !@question.url.include? "www.useloom.com" || "www.vimeo.com" || "www.youtube.com"
-                flash[:notice] = "The format of your URL is incorrect. Try again"
-                redirect_to new_question_path
-            end
+        if !@question.url.include?("www.useloom.com") && !@question.url.include?("www.vimeo.com") && !@question.url.include?("www.youtube.com") && !@question.url.empty?
+            flash[:notice] = "The format of your URL is incorrect. Try again"
+            redirect_to new_question_path
         elsif @question.save
             redirect_to root_path
         else
