@@ -1,5 +1,8 @@
-<%= form_for [@acomment] do |f| %>
-   <%= f.hidden_field :parent_id, acomment.parent.id %>
-   <%= f.text_field :body %>
-   <%= f.submit %>
+<%= @acomment.parent.body if @acomment.parent %>
+
+<%= form_for(@acomment) do |f| %>
+    <%= f.hidden_field :parent_id %>
+    <%= f.label :body %><br>
+    <%= f.text_area :body %><br>
+    <%= f.submit %>
 <% end %>
