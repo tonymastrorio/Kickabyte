@@ -56,7 +56,8 @@
         <% if current_user == answer.user %>
             <%= link_to "Edit Answer", edit_answer_path(answer), method: :get %>
         <% end %>
-        <br>
+
+        <br><%= link_to "Reply", new_acomment_path(:answer_id => answer) %>
     </div>
 
     <% answer.acomments.reverse_each do |comment| %>

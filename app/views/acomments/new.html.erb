@@ -1,7 +1,12 @@
-<%= @acomment.parent.body if @acomment.parent %>
+<% if @acomment.parent %>
+    <%= @acomment.parent.body %>
+<% elsif @acomment.answer %>
+    <%= simple_format(@acomment.answer.body) %>
+<% end %>
 
 <%= form_for(@acomment) do |f| %>
     <%= f.hidden_field :parent_id %>
+    <%= f.hidden_field :answer_id %>
     <%= f.label :body %><br>
     <%= f.text_area :body %><br>
     <%= f.submit %>

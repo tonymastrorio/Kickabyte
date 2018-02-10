@@ -1,7 +1,9 @@
 class AcommentsController < ApplicationController
 
     def new
-      @acomment = Acomment.new(:parent_id => params[:parent_id])
+      @acomment = Acomment.new
+      @acomment.answer = Answer.find_by(id: params[:answer_id])
+      @acomment.parent = Acomment.find_by(id: params[:parent_id])
     end
 
     def create
@@ -9,8 +11,6 @@ class AcommentsController < ApplicationController
       @acomment.user = current_user
       if @acomment.save
         redirect_to root_path
-      else
-        binding.pry
       end
     end
 
@@ -18,7 +18,7 @@ class AcommentsController < ApplicationController
     private
 
     def acomment_params
-        params.require(:acomment).permit(:parent_id, :answer_id, :body)
+        params.require(:acomment).permit(:parent_id, :answer_id, :body, :user_id)
     end
 
 end
