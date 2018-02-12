@@ -37,7 +37,7 @@
 <% end %>
 <br><br>
 
-<% @question.answers.each do |answer| %>
+<% @question.answers.order(cached_votes_total: :desc, created_at: :desc).each do |answer| %>
     <div class="answer" data-id="<%= answer.id %>">
         <% if current_user %>
             <%= link_to answer_user_like_path(answer, current_user), method: :put, class: "like-btn #{'liked' if current_user.liked? answer}", remote: true do %>
@@ -72,7 +72,7 @@
         <br><%= link_to "Reply", new_acomment_path(:answer_id => answer) %>
     </div>
 
-    <% answer.acomments.reverse_each do |comment| %>
+    <% answer.acomments.each do |comment| %>
         <div>
             <%= comment.body if comment.parent_id.blank? %>
             <%= link_to "Reply", new_acomment_path(:parent_id => comment, :answer_id => comment.answer) if comment.parent_id.blank? %>
