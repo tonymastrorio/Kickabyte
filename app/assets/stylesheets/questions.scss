@@ -9,7 +9,9 @@ main {
 .whole-question {
   display: flex;
   width: 100%;
-  margin: 0 auto 25px auto;
+  margin: 0 auto;
+  border-top: 1px solid #e3e5e7;
+  padding: 5px 0 5px 0;
 }
 
 .vote-container {
