@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 main {
-  padding: 25px;
+  padding: 0 25px;
 }
 
 .whole-question {
@@ -49,6 +49,10 @@ main {
 
 .question-email {
   font-style: italic;
+}
+
+.not-logged-in {
+  cursor: pointer;
 }
 
 /*Media Queries*/

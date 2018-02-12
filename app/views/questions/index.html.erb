@@ -1,9 +1,14 @@
 <main>
+    <h4>New Questions</h4>
     <% @questions.each do |question| %>
         <div class="whole-question">
             <div class="vote-container" data-id="<%= question.id %>">
-                <%= link_to question_user_like_path(question, current_user), :class => "vote #{'liked' if current_user.liked? question}", method: :put, remote: true do %>
-                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                <% if current_user %>
+                    <%= link_to question_user_like_path(question, current_user), :class => "vote #{'liked' if current_user.liked? question}", method: :put, remote: true do %>
+                        <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                    <% end %>
+                <% else %>
+                    <i class="fa fa-chevron-up not-logged-in" aria-hidden="true"></i>
                 <% end %>
                 <div class="num-upvotes">
                     <%= question.get_upvotes.size %>

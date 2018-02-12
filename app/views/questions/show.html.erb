@@ -20,29 +20,41 @@
     <div class="notice"><%= flash[:notice] %></div>
 <% end %>
 
-<%= form_for(@answer) do |f| %>
-    <%= f.hidden_field :question_id, :value => @question.id %>
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-    <%= f.label :url, "Screencast URL" %>
-    <%= f.text_field :url %><br><br>
-    <%= f.text_area :body, :class => "tinymce", :rows => 10, :cols => 120 %>
+<% if current_user %>
+    <%= form_for(@answer) do |f| %>
+        <%= f.hidden_field :question_id, :value => @question.id %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.label :url, "Screencast URL" %>
+        <%= f.text_field :url %><br><br>
+        <%= f.text_area :body, :class => "tinymce", :rows => 10, :cols => 120 %>
 
-<%= tinymce %>
-<br>
-<%= f.submit %>
+    <%= tinymce %>
+    <br>
+    <%= f.submit %>
+    <% end %>
+<% else %>
+    <p>You must be signed in to submit an answer.</p>
 <% end %>
 <br><br>
 
 <% @question.answers.each do |answer| %>
     <div class="answer" data-id="<%= answer.id %>">
-        <%= link_to answer_user_like_path(answer, current_user), method: :put, class: "like-btn #{'liked' if current_user.liked? answer}", remote: true do %>
-            <i class="fa fa-chevron-up" aria-hidden="true"></i>
+        <% if current_user %>
+            <%= link_to answer_user_like_path(answer, current_user), method: :put, class: "like-btn #{'liked' if current_user.liked? answer}", remote: true do %>
+                <i class="fa fa-chevron-up" aria-hidden="true"></i>
+            <% end %>
+        <% else %>
+            <i class="fa fa-chevron-up not-logged-in" aria-hidden="true"></i>
         <% end %>
         <strong>Votes: </strong><span class="likes-count"><%= answer.get_upvotes.size - answer.get_downvotes.size %></span>
 
-        <%= link_to answer_user_dislike_path(answer, current_user), method: :put, class: "dislike-btn #{'liked' if current_user.disliked? answer}", remote: true do %>
-            <i class="fa fa-chevron-down" aria-hidden="true"></i>
-        <% end %>
+        <% if current_user %>
+            <%= link_to answer_user_dislike_path(answer, current_user), method: :put, class: "dislike-btn #{'liked' if current_user.disliked? answer}", remote: true do %>
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            <% end %>
+        <% else %>
+                <i class="fa fa-chevron-down not-logged-in" aria-hidden="true"></i>
+            <% end %>
 
         <div>
             <% if answer.url && !answer.url.empty? %>
