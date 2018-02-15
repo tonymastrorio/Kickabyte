@@ -73,16 +73,11 @@
     </div>
 
     <% answer.acomments.each do |comment| %>
-        <div>
-            <%= comment.body if comment.parent_id.blank? %>
-            <%= link_to "Reply", new_acomment_path(:parent_id => comment, :answer_id => comment.answer) if comment.parent_id.blank? %>
-            <div>
-                <% comment.replies.each do |reply| %>
-                    <%= reply.body %>
-                    <%= link_to "Reply", new_acomment_path(:parent_id => reply, :answer_id => reply.answer) %>
-                <% end %>
+        <% if comment.parent_id.blank? %>
+            <div class="comment-box">
+                <%= render :partial=>"comment", locals: {comment: comment} %>
             </div>
-        </div>
+        <% end %>
     <% end %>
 
 
