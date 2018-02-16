@@ -9,7 +9,7 @@ class QuestionsController < ApplicationController
                 paginate page: params[:page], per_page: 20
             end.results
         else
-            @questions = Question.order('created_at DESC').page(params[:page]).per(10)
+            @questions = Question.order('created_at DESC').page(params[:page]).per(20)
         end
     end
 

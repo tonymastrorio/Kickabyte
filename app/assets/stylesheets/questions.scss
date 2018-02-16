@@ -56,7 +56,25 @@ main {
 }
 
 .comment-box {
-  padding-left: 10px;
+  padding-left: 15px;
+}
+
+.comment-box .comment-box .comment-box .comment-box .comment-box .comment-box {
+  padding-left: 0;
+}
+
+.page-container {
+  margin: 20px;
+}
+
+.question-container {
+  border-bottom: 1px solid #e3e5e7;
+}
+
+.answer-container {
+  border-bottom: 1px solid #e3e5e7;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 

@@ -1,10 +1,8 @@
-<div>
-        <%= comment.body %>
-        <%= link_to "Reply", new_acomment_path(:parent_id => comment, :answer_id => comment.answer) if comment.parent_id.blank? %>
+    <%= comment.body %>
+    <%= link_to "Reply", new_acomment_path(:parent_id => comment, :answer_id => comment.answer) %>
 
-    <% comment.replies.each do |reply| %>
-        <div class="comment-box">
-            <%= render :partial => "comment", locals: { comment: reply} %>
-        </div>
-    <% end %>
-</div>
+<% comment.replies.each do |reply| %>
+    <div class="comment-box">
+        <%= render :partial => "comment", locals: { comment: reply} %>
+    </div>
+<% end %>

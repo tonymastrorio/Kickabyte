@@ -29,12 +29,12 @@
           <ul class="nav navbar-nav">
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <%= form_tag questions_path, :method => :get do %>
-              <li>
+            <li id="search-bar">
+              <%= form_tag questions_path, :method => :get do %>
                 <%= text_field_tag :search, params[:search] %>
-                <%= submit_tag "Search", :name => nil %>
-              </li>
-            <% end %>
+                <%= submit_tag "Search", :name => nil, :id => "search-submit" %>
+              <% end %>
+            </li>
             <% if current_user %>
                 <li><%= link_to "Ask Question", new_question_path %>
                 <li><%= link_to "Log Out", destroy_user_session_path, method: "DELETE" %></li>
