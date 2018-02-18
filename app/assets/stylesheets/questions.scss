@@ -26,6 +26,16 @@ main {
   text-decoration:none;
 }
 
+.like-btn, .like-btn:focus, .like-btn:hover, .like-btn:active {
+  color: blue;
+  text-decoration:none;
+}
+
+.dislike-btn, .dislike-btn:focus, .dislike-btn:hover, .dislike-btn:active {
+  color: blue;
+  text-decoration:none;
+}
+
 .liked, .liked:focus, .liked:hover, .liked:active {
   color: orange;
   text-decoration: none;
