@@ -1,5 +1,5 @@
-width: 600
-height: 200
+width: 700
+height: 250
 
 toolbar:
   - styleselect | bold italic | undo redo | image | link | codesample | preview

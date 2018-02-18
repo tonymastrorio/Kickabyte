@@ -10,7 +10,7 @@ class AcommentsController < ApplicationController
       @acomment = Acomment.new(acomment_params)
       @acomment.user = current_user
       if @acomment.save
-        redirect_to root_path
+        redirect_to question_path(@acomment.answer.question)
       end
     end
 

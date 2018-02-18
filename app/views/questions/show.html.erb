@@ -16,31 +16,11 @@
         <%= simple_format(@question.body) %>
     </div>
 
-<h3 id="anchor_point">Your Answer</h3>
-
-<% if flash[:notice] %>
-    <div class="notice"><%= flash[:notice] %></div>
-<% end %>
-
-<% if current_user %>
-    <%= form_for(@answer) do |f| %>
-        <%= f.hidden_field :question_id, :value => @question.id %>
-        <%= f.hidden_field :user_id, :value => current_user.id %>
-        <%= f.label :url, "Screencast URL" %>
-        <%= f.text_field :url %><br><br>
-        <%= f.text_area :body, :class => "tinymce", :rows => 10, :cols => 120 %>
-
-    <%= tinymce %>
-    <br>
-    <%= f.submit %>
-    <% end %>
-<% else %>
-    <p>You must be signed in to submit an answer.</p>
-<% end %>
-<br>
+<h3><%= @question.answers.count %> answers</h3>
 
 <% @question.answers.order(cached_votes_total: :desc, created_at: :desc).each do |answer| %>
     <div class="answer-container" data-id="<%= answer.id %>">
+        <h2>
         <% if current_user %>
             <%= link_to answer_user_like_path(answer, current_user), method: :put, class: "like-btn #{'liked' if current_user.liked? answer}", remote: true do %>
                 <i class="fa fa-chevron-up" aria-hidden="true"></i>
@@ -48,15 +28,16 @@
         <% else %>
             <i class="fa fa-chevron-up not-logged-in" aria-hidden="true"></i>
         <% end %>
-        <strong>Votes: </strong><span class="likes-count"><%= answer.get_upvotes.size - answer.get_downvotes.size %></span>
+        <span class="likes-count"><%= answer.get_upvotes.size - answer.get_downvotes.size %></span>
 
         <% if current_user %>
             <%= link_to answer_user_dislike_path(answer, current_user), method: :put, class: "dislike-btn #{'liked' if current_user.disliked? answer}", remote: true do %>
                 <i class="fa fa-chevron-down" aria-hidden="true"></i>
             <% end %>
         <% else %>
-                <i class="fa fa-chevron-down not-logged-in" aria-hidden="true"></i>
-            <% end %>
+            <i class="fa fa-chevron-down not-logged-in" aria-hidden="true"></i>
+        <% end %>
+        </h2>
 
         <div>
             <% if answer.url && !answer.url.empty? %>
@@ -74,15 +55,39 @@
         <br><%= link_to "Reply", new_acomment_path(:answer_id => answer) %>
     </div>
 
-    <% answer.acomments.each do |comment| %>
-        <% if comment.parent_id.blank? %>
-            <div class="comment-box">
-                <%= render :partial=>"comment", locals: {comment: comment} %>
-            </div>
+    <div class="comments-container">
+        <% answer.acomments.each do |comment| %>
+            <% if comment.parent_id.blank? %>
+                <div class="comment-box">
+                    <%= render :partial=>"comment", locals: {comment: comment} %>
+                </div>
+            <% end %>
         <% end %>
-    <% end %>
-
+    </div>
 
 <% end %>
+
+<h3 id="anchor_point">Your Answer</h3>
+
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<% if current_user %>
+    <%= form_for(@answer) do |f| %>
+        <%= f.hidden_field :question_id, :value => @question.id %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.label :url, "Screencast URL" %>
+        <%= f.text_field :url %><br><br>
+        <%= f.text_area :body, :class => "tinymce", :rows => 10, :cols => 120 %>
+
+    <%= tinymce %>
+    <br>
+    <%= f.submit "Post Your Question" %>
+    <% end %>
+<% else %>
+    <p>You must be signed in to submit an answer.</p>
+<% end %>
+<br>
 
 </div>

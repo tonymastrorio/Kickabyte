@@ -63,8 +63,12 @@ main {
   padding-left: 0;
 }
 
+.comments-container {
+  max-width: 750px;
+}
+
 .page-container {
-  margin: 20px;
+  margin: 20px 100px;
 }
 
 .question-container {
@@ -77,6 +81,11 @@ main {
   padding-bottom: 10px;
 }
 
+.solo-comment {
+  border-bottom: 1px solid #e3e5e7;
+  padding: 5px 0;
+}
+
 
 /*Media Queries*/
 
@@ -84,5 +93,12 @@ main {
   .vote-container {
     width: 50px;
     margin: auto;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .page-container {
+    margin-left: 20px;
+    margin-right: 20px;
   }
 }
