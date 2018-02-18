@@ -6,7 +6,18 @@
 
 <div class="page-container">
 
-    <div class="question-container">
+    <div class="question-container" data-id="<%= @question.id %>">
+        <% if current_user %>
+            <%= link_to question_user_like_path(@question, current_user), :class => "vote #{'liked' if current_user.liked? @question}", method: :put, remote: true do %>
+                <i class="fa fa-chevron-up" aria-hidden="true"></i>
+            <% end %>
+        <% else %>
+            <i class="fa fa-chevron-up not-logged-in" aria-hidden="true"></i>
+        <% end %>
+        <div class="num-upvotes">
+            <%= @question.get_upvotes.size %>
+        </div>
+
         <h3><%= @question.title %></h3>
 
         <% if @question.url && !@question.url.empty? %>
