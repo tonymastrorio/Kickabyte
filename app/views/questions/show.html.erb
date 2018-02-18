@@ -18,7 +18,7 @@
 
 <h3><%= @question.answers.count %> answers</h3>
 
-<% @question.answers.order(cached_votes_total: :desc, created_at: :desc).each do |answer| %>
+<% @question.answers.order(cached_weighted_score: :desc, created_at: :desc).each do |answer| %>
     <div class="answer answer-container" data-id="<%= answer.id %>">
         <h2>
         <% if current_user %>
