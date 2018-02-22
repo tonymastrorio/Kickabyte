@@ -1,0 +1,5 @@
+class AddParentIdToQcomments < ActiveRecord::Migration[5.1]
+  def change
+    add_column :qcomments, :parent_id, :integer
+  end
+end

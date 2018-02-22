@@ -25,6 +25,18 @@
         <% end %>
 
         <%= simple_format(@question.body) %>
+        
+        <%= link_to "Add a Comment", new_qcomment_path(:question_id => @question) %>
+
+        <div class="comments-container">
+            <% @question.qcomments.each do |comment| %>
+                <% if comment.parent_id.blank? %>
+                    <div class="comment-box">
+                        <%= render :partial=>"qcomment", locals: {comment: comment} %>
+                    </div>
+                <% end %>
+            <% end %>
+        </div>
     </div>
 
 <h3><%= @question.answers.count %> answers</h3>

@@ -1,0 +1,13 @@
+<% if @qcomment.parent %>
+    <%= @qcomment.parent.body %>
+<% elsif @qcomment.question %>
+    <%= simple_format(@qcomment.question.body) %>
+<% end %>
+
+<%= form_for(@qcomment) do |f| %>
+    <%= f.hidden_field :parent_id %>
+    <%= f.hidden_field :question_id %>
+    <%= f.label :body %><br>
+    <%= f.text_area :body %><br>
+    <%= f.submit %>
+<% end %>
