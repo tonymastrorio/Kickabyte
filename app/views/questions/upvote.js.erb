@@ -1,3 +1,4 @@
+// for questions/index page
 var $upvotediv = $('div.vote-container[data-id="<%= @question.id %>"]');
 
 <% if current_user.liked? @question %>
@@ -8,3 +9,15 @@ var $upvotediv = $('div.vote-container[data-id="<%= @question.id %>"]');
 
 var $questiondiv = $('div.vote-container[data-id="<%= @question.id %>"]');
 $questiondiv.find('.num-upvotes').html("<%= @question.get_upvotes.size %>");
+
+//for questions/show page
+var $showupvotediv = $('div.question-container[data-id="<%= @question.id %>"]');
+
+<% if current_user.liked? @question %>
+    $showupvotediv.find('.vote').addClass('liked');   
+<% else %>
+    $showupvotediv.find('.vote').removeClass('liked');
+<% end %>
+
+var $showquestiondiv = $('div.question-container[data-id="<%= @question.id %>"]');
+$showquestiondiv.find('.num-upvotes').html("<%= @question.get_upvotes.size %>");
