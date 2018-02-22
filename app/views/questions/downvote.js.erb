@@ -1,24 +1,25 @@
-// for questions/index page
-var $upvotediv = $('div.vote-container[data-id="<%= @question.id %>"]');
-
-<% if current_user.liked? @question %>
-    $upvotediv.find('.like-btn').addClass('liked');   
-<% else %>
-    $upvotediv.find('.like-btn').removeClass('liked');
-<% end %>
+//for questions/index page
+var $downvotediv = $('div.vote-container[data-id="<%= @question.id %>"]');
 
 <% if current_user.disliked? @question %>
-    $upvotediv.find('.dislike-btn').addClass('liked');   
+    $downvotediv.find('.dislike-btn').addClass('liked');   
 <% else %>
-    $upvotediv.find('.dislike-btn').removeClass('liked');
+    $downvotediv.find('.dislike-btn').removeClass('liked');
+<% end %>
+
+<% if current_user.liked? @question %>
+    $downvotediv.find('.like-btn').addClass('liked');   
+<% else %>
+    $downvotediv.find('.like-btn').removeClass('liked');
 <% end %>
 
 var $questiondiv = $('div.vote-container[data-id="<%= @question.id %>"]');
 $questiondiv.find('.num-upvotes').html("<%= @question.get_upvotes.size - @question.get_downvotes.size %>");
 
-//for questions/show page
 var $showupvotediv = $('div.question-container[data-id="<%= @question.id %>"]');
 
+
+//for questions/show page
 <% if current_user.liked? @question %>
     $showupvotediv.find('.like-btn').addClass('liked');   
 <% else %>

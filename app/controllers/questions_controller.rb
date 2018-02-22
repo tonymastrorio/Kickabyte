@@ -50,7 +50,11 @@ class QuestionsController < ApplicationController
 
     def upvote
         @question = Question.find(params[:question_id])
-        if !current_user.liked? @question
+        if current_user.disliked? @question
+            @question.upvote_by current_user
+            @question.addPoints
+            @question.addPoints
+        elsif !current_user.liked? @question
             @question.upvote_by current_user
             @question.addPoints
         elsif current_user.liked? @question
@@ -61,14 +65,22 @@ class QuestionsController < ApplicationController
 
     def downvote
         @question = Question.find(params[:question_id])
-        @question.downvote_by current_user
-        redirect_back(fallback_location: root_path)
+        if current_user.liked? @question
+            @question.downvote_by current_user
+            @question.subtractPoints
+            @question.subtractPoints
+        elsif !current_user.disliked? @question
+            @question.downvote_by current_user
+            @question.subtractPoints
+        elsif current_user.disliked? @question
+            @question.unvote_by current_user
+            @question.addPoints
+        end
     end
 
     def unvote
-        @question = Question.find(params[:question_id])
+        @question = Question.find(params[:answer_id])
         @question.unvote_by current_user
-        redirect_back(fallback_location: root_path)
     end
 
     private

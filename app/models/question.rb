@@ -17,13 +17,13 @@ class Question < ApplicationRecord
     end
 
     def addPoints
-      user.points += 5
-      user.save
+        user.points += 10
+        user.save
     end
 
     def subtractPoints
-      user.points -= 5
-      user.save
+        user.points -= 10
+        user.save
     end
 
 end

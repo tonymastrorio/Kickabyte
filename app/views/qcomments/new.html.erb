@@ -1,6 +1,10 @@
 <% if @qcomment.parent %>
     <%= @qcomment.parent.body %>
 <% elsif @qcomment.question %>
+    <h3><%= @qcomment.question.title %></h3>
+        <% if @qcomment.question.url && !@qcomment.question.url.empty? %>
+            <%= get_video_iframe(@qcomment.question.url) %>
+        <% end %>
     <%= simple_format(@qcomment.question.body) %>
 <% end %>
 
@@ -9,5 +13,5 @@
     <%= f.hidden_field :question_id %>
     <%= f.label :body %><br>
     <%= f.text_area :body %><br>
-    <%= f.submit %>
+    <%= f.submit "Submit Comment" %>
 <% end %>
