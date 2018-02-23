@@ -101,7 +101,7 @@
 <h3 id="anchor_point">Your Answer</h3>
 
 <% if flash[:notice] %>
-    <div class="notice"><%= flash[:notice].html_safe %></div>
+    <div class="notice"><%= flash.now[:notice].html_safe %></div>
 <% end %>
 
 <% if current_user %>
