@@ -101,7 +101,7 @@
 <h3 id="anchor_point">Your Answer</h3>
 
 <% if flash[:notice] %>
-    <div class="notice"><%= flash[:notice] %></div>
+    <div class="notice"><%= flash[:notice].html_safe %></div>
 <% end %>
 
 <% if current_user %>
@@ -109,7 +109,7 @@
         <%= f.hidden_field :question_id, :value => @question.id %>
         <%= f.hidden_field :user_id, :value => current_user.id %>
         <%= f.label :url, "Screencast URL" %>
-        <%= f.text_field :url %><br><br>
+        <%= f.text_field :url, :class => "url-input" %><br><br>
         <%= f.text_area :body, :class => "tinymce", :rows => 10, :cols => 120 %>
 
     <%= tinymce %>

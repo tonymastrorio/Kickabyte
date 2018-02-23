@@ -20,7 +20,7 @@ class AnswersController < ApplicationController
         @answer = Answer.new(answer_params)
         @question = @answer.question
         if @answer.url.blank?
-            flash[:notice] = "A screencast is required. Record one in seconds with the Loom plugin for Chrome 
+            flash[:notice] = "A screencast is required. Record a screencast in seconds with the <a href='http://www.useloom.com'>Loom</a> plugin for Chrome 
             or host a screencast on YouTube and paste the URL here."
                 @anchor = "anchor_point"
                 render "questions/show"
