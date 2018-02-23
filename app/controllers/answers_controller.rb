@@ -19,7 +19,12 @@ class AnswersController < ApplicationController
     def create
         @answer = Answer.new(answer_params)
         @question = @answer.question
-        if !@answer.url.include?("www.useloom.com") && !@answer.url.include?("www.vimeo.com") && !@answer.url.include?("www.youtube.com")
+        if @answer.url.blank?
+            flash[:notice] = "A screencast is required. Record one in seconds with the Loom plugin for Chrome 
+            or host a screencast on YouTube and paste the URL here."
+                @anchor = "anchor_point"
+                render "questions/show"
+        elsif !@answer.url.include?("www.useloom.com") && !@answer.url.include?("www.vimeo.com") && !@answer.url.include?("www.youtube.com")
                 flash[:notice] = "The format of your URL is incorrect. Try again"
                 @anchor = "anchor_point"
                 render "questions/show"
