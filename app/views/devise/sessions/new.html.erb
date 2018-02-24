@@ -1,3 +1,10 @@
+<div class="flash-container">
+  <% if flash[:alert] %>
+    <% flash[:alert] = "You must be logged in to Ask a Question." %>
+    <h4 class="flash-style"><%= flash[:alert] %></h4>
+  <% end %>
+</div>
+
 <div id="login-page">
   <div id="login-wrapper">
 
