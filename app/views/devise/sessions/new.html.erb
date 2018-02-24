@@ -1,12 +1,14 @@
-<div class="flash-container">
-  <% if flash[:alert] %>
-    <% flash.now[:alert] = "You must be logged in to Ask a Question." %>
-    <h4 class="flash-style"><%= flash.now[:alert] %></h4>
-  <% end %>
-</div>
+  <div class="flash-container">
+    <% if flash[:alert] && flash[:alert].include?("You need to sign in or sign up before continuing.") %>
+      <% flash.now[:alert] = "You must be logged in to Ask a Question." %>
+      <h4 class="flash-style"><%= flash.now[:alert] %></h4>
+    <% elsif flash[:alert] %>
+      <h4 class="flash-style"><%= flash.now[:alert] %></h4>
+    <% end %>
+  </div>
 
-<div id="login-page">
-  <div id="login-wrapper">
+<div class="login-page">
+  <div class="login-wrapper">
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field form-group">
