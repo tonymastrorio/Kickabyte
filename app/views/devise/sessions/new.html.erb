@@ -1,7 +1,7 @@
 <div class="flash-container">
   <% if flash[:alert] %>
-    <% flash[:alert] = "You must be logged in to Ask a Question." %>
-    <h4 class="flash-style"><%= flash[:alert] %></h4>
+    <% flash.now[:alert] = "You must be logged in to Ask a Question." %>
+    <h4 class="flash-style"><%= flash.now[:alert] %></h4>
   <% end %>
 </div>
 
