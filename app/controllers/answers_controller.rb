@@ -29,7 +29,7 @@ class AnswersController < ApplicationController
                 @anchor = "anchor_point"
                 render "questions/show"
         elsif @answer.save
-            # UserMailer.welcome_email(@answer.question.user).deliver_now
+            UserMailer.welcome_email(@answer.question.user).deliver_now
             redirect_to question_path(@answer.question)
         else
             flash[:notice] = @answer.errors.full_messages.to_sentence
