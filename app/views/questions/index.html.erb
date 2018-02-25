@@ -25,7 +25,10 @@
 
             <div class="question-details">
                 <div class="question-title">
-                    <%= link_to question.title, question_path(question), :class => "question-title" %>
+                    <%= link_to question.title, question_path(question), :class => "question-title" %> 
+                    <% if !question.url.empty? %>
+                        <i class="fa fa-film"></i>
+                    <% end %>
                 </div>
                 <span>
                     <% if current_user == question.user %>
