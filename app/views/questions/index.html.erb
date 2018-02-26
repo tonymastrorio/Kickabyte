@@ -27,7 +27,7 @@
                 <div class="question-title">
                     <%= link_to question.title, question_path(question), :class => "question-title" %> 
                     <% if !question.url.empty? %>
-                        <i class="fa fa-film"></i>
+                        <i class="fa fa-film" title="This question includes a screencast"></i>
                     <% end %>
                 </div>
                 <span>

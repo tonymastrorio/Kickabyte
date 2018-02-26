@@ -2,7 +2,7 @@
 
   <div class="flash-container">
     <% if flash[:alert] && flash[:alert].include?("You need to sign in or sign up before continuing.") %>
-      <% flash.now[:alert] = "You must be logged in to Ask a Question." %>
+      <% flash.now[:alert] = "You must be logged in to continue." %>
       <h4 class="flash-style"><%= flash.now[:alert] %></h4>
     <% elsif flash[:alert] %>
       <h4 class="flash-style"><%= flash.now[:alert] %></h4>
