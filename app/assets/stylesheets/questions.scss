@@ -11,7 +11,7 @@ main {
   width: 100%;
   margin: 0 auto;
   border-top: 1px solid #e3e5e7;
-  padding: 5px 0 5px 0;
+  padding: 0;
 }
 
 .vote-container {
@@ -22,27 +22,34 @@ main {
 }
 
 .vote, .vote:focus, .vote:hover, .vote:active {
-  color: blue;
+  color: #ceccce;
   text-decoration:none;
 }
 
 .like-btn, .like-btn:focus, .like-btn:hover, .like-btn:active {
-  color: blue;
+  color: #ceccce;
   text-decoration:none;
 }
 
 .dislike-btn, .dislike-btn:focus, .dislike-btn:hover, .dislike-btn:active {
-  color: blue;
+  color: #ceccce;
   text-decoration:none;
 }
 
 .liked, .liked:focus, .liked:hover, .liked:active {
-  color: orange;
+  color: #ff5733;
   text-decoration: none;
 }
 
+.index-arrow {
+  font-size: 28px;
+}
+
 .question-details {
+  display: flex;
   flex: 1;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .question-title {

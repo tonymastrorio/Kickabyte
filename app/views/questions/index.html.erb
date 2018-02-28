@@ -5,10 +5,10 @@
             <div class="vote-container" data-id="<%= question.id %>">
                 <% if current_user %>
                     <%= link_to question_user_like_path(question, current_user), :class => "like-btn #{'liked' if current_user.liked? question}", method: :put, remote: true do %>
-                        <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                        <span class="index-arrow"><i class="fa fa-chevron-up" aria-hidden="true"></i></span>
                     <% end %>
                 <% else %>
-                    <i class="fa fa-chevron-up not-logged-in" aria-hidden="true"></i>
+                    <span class="index-arrow"><i class="fa fa-chevron-up not-logged-in" aria-hidden="true"></i></span>
                 <% end %>
                 <div class="num-upvotes">
                     <%= question.get_upvotes.size - question.get_downvotes.size %>
@@ -16,10 +16,10 @@
 
                 <% if current_user %>
                     <%= link_to question_user_dislike_path(question, current_user), :class => "dislike-btn #{'liked' if current_user.disliked? question}", method: :put, remote: true do %>
-                        <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                        <span class="index-arrow"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
                     <% end %>
                 <% else %>
-                    <i class="fa fa-chevron-down not-logged-in" aria-hidden="true"></i>
+                    <span class="index-arrow"><i class="fa fa-chevron-down not-logged-in" aria-hidden="true"></i></span>
                 <% end %>
             </div>
 
