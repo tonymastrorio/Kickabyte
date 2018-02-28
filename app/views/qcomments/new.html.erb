@@ -1,17 +1,20 @@
-<% if @qcomment.parent %>
-    <%= @qcomment.parent.body %>
-<% elsif @qcomment.question %>
-    <h3><%= @qcomment.question.title %></h3>
-        <% if @qcomment.question.url && !@qcomment.question.url.empty? %>
-            <%= get_video_iframe(@qcomment.question.url) %>
-        <% end %>
-    <%= simple_format(@qcomment.question.body) %>
-<% end %>
+<div class="page-container">
 
-<%= form_for(@qcomment) do |f| %>
-    <%= f.hidden_field :parent_id %>
-    <%= f.hidden_field :question_id %>
-    <%= f.label :body %><br>
-    <%= f.text_area :body %><br>
-    <%= f.submit "Submit Comment" %>
-<% end %>
+    <% if @qcomment.parent %>
+        <%= @qcomment.parent.body %>
+    <% elsif @qcomment.question %>
+        <h3><%= @qcomment.question.title %></h3>
+            <% if @qcomment.question.url && !@qcomment.question.url.empty? %>
+                <%= get_video_iframe(@qcomment.question.url) %>
+            <% end %>
+        <%= simple_format(@qcomment.question.body) %>
+    <% end %>
+
+    <%= form_for(@qcomment) do |f| %>
+        <%= f.hidden_field :parent_id %>
+        <%= f.hidden_field :question_id %>
+        <%= f.text_area :body, :class => "comments-box" %><br>
+        <%= f.submit "Submit Comment" %>
+    <% end %>
+
+</div>
