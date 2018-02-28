@@ -27,11 +27,11 @@
         <% end %>
         </h2>
         <h3><%= @question.title %></h3>
-        <div class="video-container">
-            <% if @question.url && !@question.url.empty? %>
+        <% if @question.url && !@question.url.empty? %>
+            <div class="video-container">
                 <%= get_video_iframe(@question.url) %>
-            <% end %>
-        </div>
+            </div>
+        <% end %>
 
         <%= simple_format(@question.body) %>
         
