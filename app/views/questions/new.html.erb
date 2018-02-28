@@ -1,22 +1,22 @@
-<h1>New Question</h1>
+<div class="page-container">
+    <p id="notice"><%= notice %></p>
 
-<p id="notice"><%= notice %></p>
-
-<% if @question.errors.any? %>
-    <% @question.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+    <% if @question.errors.any? %>
+        <% @question.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
     <% end %>
-<% end %>
 
-<%= form_for(@question) do |f| %>
-    <%= f.label :title %>
-    <%= f.text_field :title %><br><br>
-    <%= f.label :url, "Screencast URL" %>
-    <%= f.text_field :url %><br><br>
-    <%= f.text_area :body, :class => "tinymce", :rows => 10, :cols => 120 %>
+    <%= form_for(@question) do |f| %>
+        <%= f.label :title %>
+        <%= f.text_field :title, :class => "question-title", :placeholder => "What's your programming/technology question?" %><br><br>
+        <%= f.label :url, "Screencast URL" %>
+        <%= f.text_field :url, :class => "url-input", :placeholder => "Any YouTube or Loom URL" %><br><br>
+        <%= f.text_area :body, :class => "tinymce", :rows => 10, :cols => 120 %>
 
-<%= tinymce %>
-
-<%= f.submit %>
-<% end %>
+    <%= tinymce %>
+    <br>
+    <%= f.submit "Post Your Question", :class => "submit-btn" %>
+    <% end %>
+</div>
 
