@@ -17,3 +17,15 @@
 //= require prism
 //= require tinymce
 //= require_tree .
+
+tinymce.init({
+  selector: '.tinymce',  // change this value according to your HTML
+  branding: false,
+  width: 700,
+  height: 250,
+  mobile: {
+    theme: 'mobile',
+    plugins: [ 'autosave', 'lists', 'autolink' ],
+    toolbar: [ 'undo', 'bold', 'italic', 'styleselect' ]
+  }
+});
