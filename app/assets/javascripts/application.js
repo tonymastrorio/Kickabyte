@@ -23,6 +23,7 @@ tinymce.init({
   branding: false,
   width: 700,
   height: 250,
+  plugins: [ 'code', 'lists' ],
   mobile: {
     theme: 'mobile',
     plugins: [ 'autosave', 'lists', 'autolink' ],

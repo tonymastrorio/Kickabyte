@@ -1,8 +1,8 @@
-toolbar:
-  - styleselect | bold italic | undo redo | image | link | codesample | preview
-plugins:
-  - image
-  - link
-  - codesample
-  - preview
+# toolbar:
+#   - styleselect | bold italic | undo redo | image | link | codesample | preview
+# plugins:
+#   - image
+#   - link
+#   - codesample
+#   - preview
 
