@@ -21,12 +21,16 @@
 if (screen.width < 700) {
     tinymce.init({
       selector: '.tinymce',  // change this value according to your HTML
+      plugins: ['image', 'link', 'codesample', 'preview'],
+      toolbar: 'styleselect | bold italic | undo redo | link image | codesample | preview',
       branding: false,
       height: 250
     });
 } else {
     tinymce.init({
       selector: '.tinymce',  // change this value according to your HTML
+      plugins: ['image', 'link', 'codesample', 'preview'],
+      toolbar: 'styleselect | bold italic | undo redo | link image | codesample | preview',
       branding: false,
       width: 700,
       height: 250
