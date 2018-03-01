@@ -100,10 +100,9 @@
 <% end %>
 
 <h3 id="anchor_point">Your Answer</h3>
-
-<% if flash[:notice] %>
-    <div class="notice"><%= flash.now[:notice].html_safe %></div>
-<% end %>
+    <% if flash[:alert] && flash[:alert] != "You are already signed in." %>
+        <div class="notice"><%= flash.now[:alert].html_safe %></div>
+    <% end %>
 
 <% if current_user %>
     <%= form_for(@answer) do |f| %>

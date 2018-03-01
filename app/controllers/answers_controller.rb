@@ -20,19 +20,19 @@ class AnswersController < ApplicationController
         @answer = Answer.new(answer_params)
         @question = @answer.question
         if @answer.url.blank?
-            flash[:notice] = "A screencast is required. Record a screencast in seconds with the <a href='http://www.useloom.com'>Loom</a> plugin for Chrome 
+            flash[:alert] = "A screencast is required. Record a screencast in seconds with the <a href='http://www.useloom.com'>Loom</a> plugin for Chrome 
             or host a screencast on YouTube and paste the URL here."
                 @anchor = "anchor_point"
                 render "questions/show"
         elsif !@answer.url.include?("www.useloom.com") && !@answer.url.include?("www.vimeo.com") && !@answer.url.include?("www.youtube.com")
-                flash[:notice] = "The format of your URL is incorrect. Try again"
+                flash[:alert] = "The format of your URL is incorrect. Try again"
                 @anchor = "anchor_point"
                 render "questions/show"
         elsif @answer.save
             UserMailer.welcome_email(@answer.question.user).deliver_now
             redirect_to question_path(@answer.question)
         else
-            flash[:notice] = @answer.errors.full_messages.to_sentence
+            flash[:alert] = @answer.errors.full_messages.to_sentence
             redirect_back(fallback_location: root_path)
         end
     end
