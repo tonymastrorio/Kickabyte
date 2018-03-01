@@ -18,15 +18,18 @@
 //= require tinymce
 //= require_tree .
 
-tinymce.init({
-  selector: '.tinymce',  // change this value according to your HTML
-  branding: false,
-  width: 700,
-  height: 250,
-  plugins: [ 'code', 'lists' ],
-  mobile: {
-    theme: 'mobile',
-    plugins: [ 'autosave', 'lists', 'autolink' ],
-    toolbar: [ 'undo', 'bold', 'italic', 'styleselect' ]
-  }
-});
+if (screen.width < 700) {
+    tinymce.init({
+      selector: '.tinymce',  // change this value according to your HTML
+      branding: false,
+      height: 250
+    });
+} else {
+    tinymce.init({
+      selector: '.tinymce',  // change this value according to your HTML
+      branding: false,
+      width: 700,
+      height: 250
+    });
+}
+
