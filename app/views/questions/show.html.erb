@@ -34,6 +34,14 @@
         <% end %>
 
         <%= simple_format(@question.body) %>
+
+        <div>&mdash; asked <%= time_ago_in_words(@question.created_at) %> ago by: <%= @question.user.displayName %></div>
+
+        <% if current_user == @question.user %>
+            <div class="edit-question-link">
+                <%= link_to "Edit Question", edit_question_path(@question), method: :get %>
+            </div>
+        <% end %>
         
         <%= link_to "Add a Comment", new_qcomment_path(:question_id => @question) %>
 
