@@ -34,7 +34,6 @@ if (screen.width > 700) {
       plugins: ['image', 'link', 'codesample', 'preview'],
       toolbar: 'styleselect | bold italic | undo redo | link image | codesample | preview',
       branding: false,
-      width: 700,
       height: 250
     });
 }
