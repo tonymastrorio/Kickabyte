@@ -37,9 +37,9 @@
                     <% end %>
                 </span>
                 <div class="question-user">
-                    by <span class="question-email"><%= question.user.displayName %></span>
-                    <%= time_ago_in_words(question.created_at) %> ago
-                    <%= link_to question.answers.count.to_s + " answers", question_path(question), :"data-turbolinks" => false %>
+                    <span class="question-email"><%= question.user.displayName %></span>
+                    · <%= time_ago_in_words(question.created_at) %> ago
+                    · <%= link_to question.answers.count.to_s + " answers", question_path(question), :"data-turbolinks" => false %>
                 </div>
             </div>
         </div>
