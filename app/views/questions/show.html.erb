@@ -130,6 +130,8 @@
     <% end %>
 <% else %>
     <p>You must be signed in to submit an answer.</p>
+    <p><%= link_to "Sign Up", new_user_registration_path %> or 
+        <%= link_to "Log In", new_user_session_path %> to continue.</p>
 <% end %>
 <br>
 
