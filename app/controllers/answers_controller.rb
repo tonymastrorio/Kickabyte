@@ -74,6 +74,7 @@ class AnswersController < ApplicationController
     end
 
     def destroy
+        require_permission_answers_controller
         @answer = Answer.find(params[:id])
         @answer.destroy
         
