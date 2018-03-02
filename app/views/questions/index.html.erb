@@ -8,7 +8,8 @@
                         <span class="index-arrow"><i class="fa fa-chevron-up" aria-hidden="true"></i></span>
                     <% end %>
                 <% else %>
-                    <span class="index-arrow"><i class="fa fa-chevron-up not-logged-in" aria-hidden="true"></i></span>
+                    <span class="index-arrow"><a href="/users/sign_up"><i class="fa fa-chevron-up not-logged-in" aria-hidden="true">
+                    </i></a></span>
                 <% end %>
                 <div class="num-upvotes">
                     <%= question.get_upvotes.size - question.get_downvotes.size %>
@@ -19,7 +20,7 @@
                         <span class="index-arrow"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
                     <% end %>
                 <% else %>
-                    <span class="index-arrow"><i class="fa fa-chevron-down not-logged-in" aria-hidden="true"></i></span>
+                    <span class="index-arrow"><a href="/users/sign_up"><i class="fa fa-chevron-down not-logged-in" aria-hidden="true"></i></a></span>
                 <% end %>
             </div>
 
