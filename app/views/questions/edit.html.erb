@@ -1,14 +1,25 @@
-<%= form_for @question, url: question_path(@question), html: { method: :put } do |f| %>
+<div class="page-container">
+    <p id="notice"><%= notice %></p>
 
-    <%= f.label :title %>
-    <%= f.text_field :title %><br><br>
-    <%= f.label :url, "Screencast URL" %>
-    <%= f.text_field :url %><br><br>
-    <%= f.label :body %>
-    <%= f.text_area :body, :class => "tinymce", :rows => 10, :cols => 120 %>
+    <% if @question.errors.any? %>
+        <ul>
+            <% @question.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    <% end %>
 
-<%= tinymce %>
+    <%= form_for @question, url: question_path(@question), html: { method: :put } do |f| %>
 
-<%= f.submit %>
-    
-<% end %>
+        <%= f.label :title %>
+        <%= f.text_field :title, :class => "new-question-title", :placeholder => "What's your programming/technology question?" %><br><br>
+        <%= f.label :url, "Screencast URL" %>
+        <%= f.text_field :url, :class => "url-input", :placeholder => "Any YouTube or Loom URL" %><br><br>
+        <%= f.text_area :body, :class => "tinymce" %>
+
+        <%= tinymce %>
+        <br>
+        <%= f.submit "Edit Your Question", :class => "submit-btn" %>
+        
+    <% end %>
+</div>

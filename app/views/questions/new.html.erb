@@ -2,9 +2,11 @@
     <p id="notice"><%= notice %></p>
 
     <% if @question.errors.any? %>
-        <% @question.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-        <% end %>
+        <ul>
+            <% @question.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
     <% end %>
 
     <%= form_for(@question) do |f| %>
