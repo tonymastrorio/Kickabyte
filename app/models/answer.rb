@@ -1,7 +1,7 @@
 class Answer < ApplicationRecord
     belongs_to :user
     belongs_to :question
-    has_many :acomments
+    has_many :acomments, dependent: :destroy
     validates_presence_of :body, :url
     acts_as_votable
 

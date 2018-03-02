@@ -73,10 +73,17 @@ class AnswersController < ApplicationController
         # redirect_back(fallback_location: root_path)
     end
 
+    def destroy
+        @answer = Answer.find(params[:id])
+        @answer.destroy
+        
+        redirect_back(fallback_location: root_path)
+    end
+
     private
 
     def answer_params
-        params.require(:answer).permit(:body, :user_id, :question_id, :url)
+        params.require(:answer).permit(:body, :user_id, :question_id, :url, :destroy)
     end
 
     def require_permission_answers_controller
