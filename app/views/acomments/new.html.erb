@@ -1,5 +1,11 @@
 <div class="page-container">
 
+    <% if @acomment.parent.url && !@acomment.parent.url.empty? %>
+        <div class="video-container">
+            <%= get_video_iframe(@acomment.parent.url) %>
+        </div>
+    <% end %>
+
     <% if @acomment.parent %>
         <%= @acomment.parent.body %>
     <% elsif @acomment.answer %>
