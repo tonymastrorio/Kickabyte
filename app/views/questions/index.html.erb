@@ -27,7 +27,7 @@
             <div class="question-details">
                 <div class="question-title">
                     <%= link_to question.title, question_path(question), :class => "question-title", :"data-turbolinks" => false %> 
-                    <% if !question.url.empty? %>
+                    <% if question.url && !question.url.empty? %>
                         <i class="fa fa-film" title="This question includes a screencast"></i>
                     <% end %>
                 </div>

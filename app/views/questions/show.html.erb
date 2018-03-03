@@ -39,7 +39,11 @@
 
         <% if current_user == @question.user %>
             <div class="edit-question-link">
-                <%= link_to "Edit Question", edit_question_path(@question), method: :get %>
+                <%= link_to "Edit Question", edit_question_path(@question), method: :get %> | 
+                <%= link_to 'Delete Question', 
+                         @question, 
+                         method: "delete",
+                         data: { confirm: 'Are you sure?' } %>
             </div>
         <% end %>
         

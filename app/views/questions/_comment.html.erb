@@ -1,5 +1,5 @@
 <div class="solo-comment">
-    <%= comment.body %> &mdash; <%= comment.user.displayName %> &mdash; <%= time_ago_in_words(comment.updated_at) %> ago
+    <%= comment.body %> &mdash; <%= comment.user.displayName if comment.user %> &mdash; <%= time_ago_in_words(comment.updated_at) %> ago
     <%= link_to "Reply", new_acomment_path(:parent_id => comment, :answer_id => comment.answer) %>
 </div>
 

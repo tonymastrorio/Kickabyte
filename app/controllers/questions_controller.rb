@@ -83,6 +83,14 @@ class QuestionsController < ApplicationController
         @question.unvote_by current_user
     end
 
+    def destroy
+        require_permission_questions_controller
+        @question = Question.find(params[:id])
+        @question.destroy
+        
+        redirect_to root_path
+    end
+
     private
 
     def question_params
