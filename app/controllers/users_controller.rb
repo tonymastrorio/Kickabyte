@@ -13,7 +13,7 @@ class UsersController < ApplicationController
         end
         @user = current_user
         @user.update(user_params)
-        redirect_to edit_user_path
+        redirect_to edit_user_registration_path
     end
 
     private
