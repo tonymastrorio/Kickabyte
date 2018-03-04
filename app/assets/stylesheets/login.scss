@@ -35,3 +35,14 @@
 .login-signup-links {
   margin-top: 10px;
 }
+
+/*Media Queries*/
+
+@media only screen and (max-width: 500px) {
+  .login-wrapper {
+    width: 100%;
+    margin: 0;
+    border: none;
+    padding: 10px;
+  }
+}
