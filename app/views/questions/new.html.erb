@@ -12,8 +12,43 @@
     <%= form_for(@question) do |f| %>
         <%= f.label :title %>
         <%= f.text_field :title, :class => "new-question-title", :placeholder => "What's your programming/technology question?" %><br><br>
-        <%= f.label :url, "Screencast URL" %>
-        <%= f.text_field :url, :class => "url-input", :placeholder => "Any YouTube or Loom URL" %><br><br>
+        <%= f.label :url, "Screencast URL" %> 
+        <%= f.text_field :url, :class => "url-input", :placeholder => "Any YouTube or Loom URL (not an embed code)" %> 
+
+        <!-- Bootstrap modal for URL guidelines -->
+        <!-- Trigger the modal with a button -->
+          <a data-toggle="modal" data-target="#myModal"><i class="fa fa-question-circle"></i></a>
+
+          <!-- Modal -->
+          <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Screencast URL Guidelines</h4>
+                </div>
+                <div class="modal-body">
+                  <p>You have two options for creating screencasts:
+                    <ol>
+                        <li>Use <a href="http://www.useloom.com" target="blank">Loom</a>, the free Chrome plugin. Loom makes creating screencasts easy, and gives you a URL which you can enter on Kickabyte.</li>
+                        <li>Create your own screencast and host it on YouTube.</li>
+                    </ol>
+                  </p>
+                  <p><strong>In either case, use the plain URL, not the embed code.</strong></p>
+                  <p>Screencasts are encouraged, although not required, when submitting questions to Kickabyte.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+
+        <br><br>
+
         <%= f.text_area :body, :class => "tinymce" %>
 
     <%= tinymce %>
