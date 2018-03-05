@@ -86,6 +86,7 @@ class QuestionsController < ApplicationController
     def destroy
         require_permission_questions_controller
         @question = Question.find(params[:id])
+        check_answers_and_date
         @question.destroy
         
         redirect_to root_path
@@ -99,6 +100,12 @@ class QuestionsController < ApplicationController
 
     def require_permission_questions_controller
         if current_user != Question.find(params[:id]).user
+            redirect_to root_path
+        end
+    end
+
+    def check_answers_and_date
+        if @question.answers.size > 0 || @question.created_at < 1.hour.ago
             redirect_to root_path
         end
     end

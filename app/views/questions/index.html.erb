@@ -34,6 +34,13 @@
                 <span>
                     <% if current_user == question.user %>
                         <%= link_to "Edit Question", edit_question_path(question), method: :get %>
+                        <!-- Do not allow delete if there are any answers or the question is more than an hour old -->
+                        <% if question.answers.size.zero? && question.created_at > 1.hour.ago %> | 
+                            <%= link_to 'Delete Question', 
+                                     question, 
+                                     method: "delete",
+                                     data: { confirm: 'Are you sure?' } %>
+                        <% end %>
                     <% end %>
                 </span>
                 <div class="question-user">
