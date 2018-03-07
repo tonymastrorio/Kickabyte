@@ -1,4 +1,14 @@
 <div class="page-container">
+    <div class="alert alert-warning alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong>Some items to consider before asking a question:</strong> <ol>
+        <li>Be as specific as possible and provide as much relevant detail as possible.</li>
+        <li>Include your code, if applicable.</li>
+        <li>Include a screencast, where appropriate. Screencasts should serve to better explain your question, show your code, demonstrate behavior/error messages, etc.</li>
+        <li>Easily record your screencast with the <a href="http://useloom.com" target="blank">Loom</a> Chrome extension, or host a screencast on YouTube. Currently, only links from Loom and YouTube are supported.</li>
+        <li>Since screencasts are required for answers, your question should be one that would benefit from a screencast in the answer.</li>
+      </ol>
+    </div>
     <p id="notice"><%= notice %></p>
 
     <% if @question.errors.any? %>
