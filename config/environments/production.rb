@@ -68,10 +68,19 @@ Rails.application.configure do
     address:              'smtp.gmail.com',
     port:                 587,
     domain:               'https://www.kickabyte.com',
-    user_name:            ENV['GMAIL_USERNAME'],
-    password:             ENV['GMAIL_PW'],
+    user_name:            'tmastrorio@gmail.com',
+    password:             'dctkkmiqlavwshbr',
     authentication:       'plain',
     enable_starttls_auto: true  }
+
+  # config.action_mailer.smtp_settings = {
+  #   address:              'smtp.gmail.com',
+  #   port:                 587,
+  #   domain:               'https://www.kickabyte.com',
+  #   user_name:            ENV['GMAIL_USERNAME'],
+  #   password:             ENV['GMAIL_PW'],
+  #   authentication:       'plain',
+  #   enable_starttls_auto: true  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
