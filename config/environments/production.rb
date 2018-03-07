@@ -60,20 +60,21 @@ Rails.application.configure do
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "gramps_#{Rails.env}"
-  config.action_mailer.default_url_options = { :host => 'https://www.kickabyte.com' }  
-  config.action_mailer.delivery_method = :smtp  
-  config.action_mailer.perform_deliveries = true  
-  config.action_mailer.raise_delivery_errors = false  
-  config.action_mailer.default :charset => "utf-8"  
-  config.action_mailer.smtp_settings = {  
-    address: "smtp.gmail.com",
-    port: 25,
-    domain: "https://www.kickabyte.com",
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: 'tmastrorio@gmail.com',
-    password: 'dctkkmiqlavwshbr',
-}
+ # Don't care if the mailer can't send.
+  config.action_mailer.default_url_options = { :host => 'https://www.kickabyte.com' }
+  config.action_mailer.raise_delivery_errors = false
+
+  config.action_mailer.perform_caching = false
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'localhost:3000',
+    user_name:            'tmastrorio@gmail.com',
+    password:             'dctkkmiqlavwshbr',
+    authentication:       'plain',
+    enable_starttls_auto: true  }
 
   # config.action_mailer.smtp_settings = {
   #   address:              'smtp.gmail.com',
