@@ -6,6 +6,8 @@
       <h4 class="flash-style"><%= flash.now[:alert] %></h4>
     <% elsif flash[:alert] %>
       <h4 class="flash-style"><%= flash.now[:alert] %></h4>
+    <% elsif flash[:notice] %>
+      <h4 class="flash-style"><%= flash.now[:notice] %></h4>
     <% end %>
   </div>
 
