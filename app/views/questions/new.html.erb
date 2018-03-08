@@ -63,7 +63,13 @@
 
     <%= tinymce %>
     <br>
-    <%= f.submit "Post Your Question", :class => "submit-btn" %>
+
+    <%= f.label :tags %>    
+    <%= f.text_field :tag_list, value: f.object.tag_list.to_s, :class => "tag-input" %>
+
+    <br><br>
+
+    <%= f.submit "Post Your Question", :class => "submit-btn new-question-submit" %>
     <% end %>
 </div>
 

@@ -35,6 +35,13 @@
 
         <%= simple_format(@question.body) %>
 
+        <div class="tags-container">
+            <% @question.tags.each do |tag| %>
+                <span class="tag-box"><%= tag %></span>
+            <% end %>
+        </div>
+
+
         <div>&mdash; asked <%= time_ago_in_words(@question.created_at) %> ago by: <%= @question.user.displayName %></div>
 
         <% if current_user == @question.user %>

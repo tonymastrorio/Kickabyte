@@ -4,6 +4,7 @@ class Question < ApplicationRecord
     has_many :qcomments
     validates_presence_of :title, :body
     acts_as_votable
+    acts_as_taggable_on :tags
 
     searchable do
         text :title, :body, :question_user

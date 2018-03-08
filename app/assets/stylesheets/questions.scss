@@ -112,6 +112,10 @@ main {
   width: 420px;
 }
 
+.tag-input {
+  width: 500px;
+}
+
 .flash-style {
   display: inline-block;
   border: 1px solid black;
@@ -138,6 +142,16 @@ main {
 
 .index-arrow a {
   color: #b1a7a5;
+}
+
+.tags-container {
+  margin-bottom: 10px;
+}
+
+.tag-box {
+  background: #D3D3D3;
+  padding: 5px;
+  margin-right: 5px;
 }
 
 /*Media Queries*/
@@ -181,6 +195,10 @@ main {
   }
 
   .new-question-title {
+    width: 100%;
+  }
+
+  .tag-input {
     width: 100%;
   }
 

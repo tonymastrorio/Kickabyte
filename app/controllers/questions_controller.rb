@@ -95,7 +95,7 @@ class QuestionsController < ApplicationController
     private
 
     def question_params
-        params.require(:question).permit(:title, :body, :url)
+        params.require(:question).permit(:title, :body, :url, :tag_list)
     end
 
     def require_permission_questions_controller
