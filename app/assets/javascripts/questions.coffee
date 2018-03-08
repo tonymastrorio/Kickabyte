@@ -8,3 +8,5 @@ $ ->
   $(".not-logged-in").click ->
     alert "You must be logged in to vote"
 ###
+
+###
