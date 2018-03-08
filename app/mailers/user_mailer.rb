@@ -3,7 +3,7 @@ class UserMailer < ApplicationMailer
  
     def welcome_email(user)
         @user = user
-        @url  = 'http://localhost:3000'
+        @url  = 'https://www.kickabyte.com'
     mail(to: @user.email, subject: 'You have received a response to your question')
   end
 end
