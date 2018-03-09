@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require turbolinks
 //= require jquery
 //= require bootstrap-sprockets
 //= require prism
@@ -37,4 +36,5 @@ if (screen.width > 700) {
       height: 250
     });
 }
+
 

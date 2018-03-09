@@ -26,7 +26,7 @@
 
             <div class="question-details">
                 <div class="question-title">
-                    <%= link_to question.title, question_path(question), :class => "question-title", :"data-turbolinks" => false %> 
+                    <%= link_to question.title, question_path(question), :class => "question-title" %> 
                     <% if question.url && !question.url.empty? %>
                         <i class="fa fa-film" title="This question includes a screencast"></i>
                     <% end %>
@@ -46,7 +46,7 @@
                 <div class="question-user">
                     <span class="question-email"><%= question.user.displayName %></span>
                     · <%= time_ago_in_words(question.created_at) %> ago
-                    · <%= link_to question.answers.count.to_s + " answers", question_path(question), :"data-turbolinks" => false %>
+                    · <%= link_to question.answers.count.to_s + " answers", question_path(question) %>
                 </div>
             </div>
         </div>

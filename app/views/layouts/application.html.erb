@@ -17,8 +17,8 @@
     <title>Kickabyte</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
 
     <!-- Redirect www to https -->
     <script>
@@ -54,7 +54,7 @@
                 <%= text_field_tag :search, params[:search] %><%= submit_tag "Search", :name => nil, :id => "search-submit" %>
               <% end %>
             </li>
-            <li><%= link_to "Ask Question", new_question_path, :"data-turbolinks" => false %></li>
+            <li><%= link_to "Ask Question", new_question_path %></li>
             <% if current_user %>
                 <li><%= link_to "Log Out", destroy_user_session_path, method: "DELETE" %></li>
                 <li><%= link_to edit_user_registration_path do %>
