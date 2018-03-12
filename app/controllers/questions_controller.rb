@@ -10,6 +10,7 @@ class QuestionsController < ApplicationController
             end.results
         else
             @questions = Question.order('created_at DESC').page(params[:page]).per(20)
+            @firstQuestion = Question.find_by(id: 125)
         end
     end
 
