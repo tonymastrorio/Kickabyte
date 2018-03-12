@@ -50,17 +50,19 @@
                     · <%= time_ago_in_words(@firstQuestion.created_at) %> ago
                     · <%= link_to @firstQuestion.answers.count.to_s + " answers", question_path(@firstQuestion) %>
                 </div>
-                <div class="tags-container">
-                    <% @firstQuestion.tags.each do |tag| %>
-                        <span class="tag-box"><%= tag %></span>
-                    <% end %>
-                </div>
+                <% if @firstQuestion.tags.any? %>
+                    <div class="tags-container">
+                        <% @firstQuestion.tags.each do |tag| %>
+                            <span class="tag-box"><%= tag %></span>
+                        <% end %>
+                    </div>
+                <% end %>
             </div>
         </div>
 
     <!-- Display all the questions in the loop except for the highlighted first question -->
     <% @questions.each do |question| %>
-        <% if question.id != 125 %>
+        <% if question.id != 3 %>
             <div class="whole-question">
                 <div class="vote-container" data-id="<%= question.id %>">
                     <% if current_user %>
@@ -108,11 +110,15 @@
                         · <%= time_ago_in_words(question.created_at) %> ago
                         · <%= link_to question.answers.count.to_s + " answers", question_path(question) %>
                     </div>
-                    <div class="tags-container">
-                        <% question.tags.each do |tag| %>
-                            <span class="tag-box"><%= tag %></span>
-                        <% end %>
-                    </div>
+
+                    <!-- Check if there are any tags on the question -->
+                    <% if question.tags.any? %>
+                        <div class="tags-container">
+                            <% question.tags.each do |tag| %>
+                                <span class="tag-box"><%= tag %></span>
+                            <% end %>
+                        </div>
+                    <% end %>
                 </div>
             </div>
         <% end %>
