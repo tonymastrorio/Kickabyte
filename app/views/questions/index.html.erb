@@ -62,7 +62,7 @@
 
     <!-- Display all the questions in the loop except for the highlighted first question -->
     <% @questions.each do |question| %>
-        <% if question.id != 3 %>
+        <% if question.id != 8 %>
             <div class="whole-question">
                 <div class="vote-container" data-id="<%= question.id %>">
                     <% if current_user %>
