@@ -3,62 +3,65 @@
     <h4>New Questions</h4>
 
     <!-- Display a highlighted first question -->
-    <div class="whole-question first-question">
-            <div class="vote-container" data-id="<%= @firstQuestion.id %>">
-                <% if current_user %>
-                    <%= link_to question_user_like_path(@firstQuestion, current_user), :class => "like-btn #{'liked' if current_user.liked? @firstQuestion}", method: :put, remote: true do %>
-                        <span class="index-arrow"><i class="fa fa-chevron-up" aria-hidden="true"></i></span>
-                    <% end %>
-                <% else %>
-                    <span class="index-arrow"><a href="/users/sign_up"><i class="fa fa-chevron-up not-logged-in" aria-hidden="true">
-                    </i></a></span>
-                <% end %>
-                <div class="num-upvotes">
-                    <%= @firstQuestion.get_upvotes.size - @firstQuestion.get_downvotes.size %>
-                </div>
-
-                <% if current_user %>
-                    <%= link_to question_user_dislike_path(@firstQuestion, current_user), :class => "dislike-btn #{'liked' if current_user.disliked? @firstQuestion}", method: :put, remote: true do %>
-                        <span class="index-arrow"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
-                    <% end %>
-                <% else %>
-                    <span class="index-arrow"><a href="/users/sign_up"><i class="fa fa-chevron-down not-logged-in" aria-hidden="true"></i></a></span>
-                <% end %>
-            </div>
-
-            <div class="question-details">
-                <div class="question-title">
-                    <%= link_to @firstQuestion.title, question_path(@firstQuestion), :class => "question-title" %> 
-                    <% if @firstQuestion.url && !@firstQuestion.url.empty? %>
-                        <i class="fa fa-film" title="This question includes a screencast"></i>
-                    <% end %>
-                </div>
-                <span>
-                    <% if current_user == @firstQuestion.user %>
-                        <%= link_to "Edit Question", edit_question_path(@firstQuestion), method: :get %>
-                        <!-- Do not allow delete if there are any answers or the question is more than an hour old -->
-                        <% if @firstQuestion.answers.size.zero? && @firstQuestion.created_at > 1.hour.ago %> | 
-                            <%= link_to 'Delete Question', 
-                                     @firstQuestion, 
-                                     method: "delete",
-                                     data: { confirm: 'Are you sure?' } %>
+    <!-- Don't show this if the user is searching for something -->
+    <% if !params[:search] %>
+        <div class="whole-question first-question">
+                <div class="vote-container" data-id="<%= @firstQuestion.id %>">
+                    <% if current_user %>
+                        <%= link_to question_user_like_path(@firstQuestion, current_user), :class => "like-btn #{'liked' if current_user.liked? @firstQuestion}", method: :put, remote: true do %>
+                            <span class="index-arrow"><i class="fa fa-chevron-up" aria-hidden="true"></i></span>
                         <% end %>
+                    <% else %>
+                        <span class="index-arrow"><a href="/users/sign_up"><i class="fa fa-chevron-up not-logged-in" aria-hidden="true">
+                        </i></a></span>
                     <% end %>
-                </span>
-                <div class="question-user">
-                    <span class="question-email"><%= @firstQuestion.user.displayName %></span>
-                    · <%= time_ago_in_words(@firstQuestion.created_at) %> ago
-                    · <%= link_to @firstQuestion.answers.count.to_s + " answers", question_path(@firstQuestion) %>
+                    <div class="num-upvotes">
+                        <%= @firstQuestion.get_upvotes.size - @firstQuestion.get_downvotes.size %>
+                    </div>
+
+                    <% if current_user %>
+                        <%= link_to question_user_dislike_path(@firstQuestion, current_user), :class => "dislike-btn #{'liked' if current_user.disliked? @firstQuestion}", method: :put, remote: true do %>
+                            <span class="index-arrow"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+                        <% end %>
+                    <% else %>
+                        <span class="index-arrow"><a href="/users/sign_up"><i class="fa fa-chevron-down not-logged-in" aria-hidden="true"></i></a></span>
+                    <% end %>
                 </div>
-                <% if @firstQuestion.tags.any? %>
-                    <div class="tags-container">
-                        <% @firstQuestion.tags.each do |tag| %>
-                            <span class="tag-box"><%= tag %></span>
+
+                <div class="question-details">
+                    <div class="question-title">
+                        <%= link_to @firstQuestion.title, question_path(@firstQuestion), :class => "question-title" %> 
+                        <% if @firstQuestion.url && !@firstQuestion.url.empty? %>
+                            <i class="fa fa-film" title="This question includes a screencast"></i>
                         <% end %>
                     </div>
-                <% end %>
+                    <span>
+                        <% if current_user == @firstQuestion.user %>
+                            <%= link_to "Edit Question", edit_question_path(@firstQuestion), method: :get %>
+                            <!-- Do not allow delete if there are any answers or the question is more than an hour old -->
+                            <% if @firstQuestion.answers.size.zero? && @firstQuestion.created_at > 1.hour.ago %> | 
+                                <%= link_to 'Delete Question', 
+                                         @firstQuestion, 
+                                         method: "delete",
+                                         data: { confirm: 'Are you sure?' } %>
+                            <% end %>
+                        <% end %>
+                    </span>
+                    <div class="question-user">
+                        <span class="question-email"><%= @firstQuestion.user.displayName %></span>
+                        · <%= time_ago_in_words(@firstQuestion.created_at) %> ago
+                        · <%= link_to @firstQuestion.answers.count.to_s + " answers", question_path(@firstQuestion) %>
+                    </div>
+                    <% if @firstQuestion.tags.any? %>
+                        <div class="tags-container">
+                            <% @firstQuestion.tags.each do |tag| %>
+                                <span class="tag-box"><%= tag %></span>
+                            <% end %>
+                        </div>
+                    <% end %>
+                </div>
             </div>
-        </div>
+        <% end %>
 
     <!-- Display all the questions in the loop except for the highlighted first question -->
     <% @questions.each do |question| %>
