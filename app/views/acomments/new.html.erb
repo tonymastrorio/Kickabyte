@@ -1,8 +1,7 @@
 <div class="page-container">
-
-    <% if @acomment.parent.url && !@acomment.parent.url.empty? %>
+    <% if @acomment.answer && @acomment.answer.url && !@acomment.answer.url.empty? %>
         <div class="video-container">
-            <%= get_video_iframe(@acomment.parent.url) %>
+            <%= get_video_iframe(@acomment.answer.url) %>
         </div>
     <% end %>
 
