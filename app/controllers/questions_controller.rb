@@ -10,7 +10,11 @@ class QuestionsController < ApplicationController
             end.results
         else
             @questions = Question.order('created_at DESC').page(params[:page]).per(20)
-            @firstQuestion = Question.find_by(id: 8)
+            if Rails.env.development?
+                @firstQuestion = Question.find_by(id: 1)
+            elsif Rails.env.production?
+                @firstQuestion = Question.find_by(id: 8)
+            end
         end
     end
 

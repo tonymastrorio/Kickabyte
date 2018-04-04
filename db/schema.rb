@@ -18,9 +18,7 @@ ActiveRecord::Schema.define(version: 20180308031709) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "ancestry"
     t.integer "parent_id"
-    t.index ["ancestry"], name: "index_acomments_on_ancestry"
   end
 
   create_table "answers", force: :cascade do |t|
@@ -37,8 +35,6 @@ ActiveRecord::Schema.define(version: 20180308031709) do
     t.integer "cached_weighted_total", default: 0
     t.float "cached_weighted_average", default: 0.0
     t.string "url"
-    t.string "ancestry"
-    t.index ["ancestry"], name: "index_answers_on_ancestry"
     t.index ["cached_votes_down"], name: "index_answers_on_cached_votes_down"
     t.index ["cached_votes_score"], name: "index_answers_on_cached_votes_score"
     t.index ["cached_votes_total"], name: "index_answers_on_cached_votes_total"
